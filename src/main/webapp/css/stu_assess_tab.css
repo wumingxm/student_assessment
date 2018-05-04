@@ -1,0 +1,17 @@
+#moralTrait_div,#civicLiteracy_div,#liaision_div,
+#exerciseHealth_div,#appearance_div,#academicYear_div,#term_div{
+	margin-top:20px;
+	margin-left:100px;
+}
+#moralTrait{
+	width:140px;
+	margin-left:100px;
+}
+#civicLiteracy,#liaision,#exerciseHealth,#appearance{
+	width:140px;
+	margin-left:100px;
+}
+#term{
+	padding-left:2em;
+	width:140px;
+}

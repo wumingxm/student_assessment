@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://www.mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.student_assessment.dao.CourseSelectDao">
+	<resultMap id="rs1" type="CourseSelect">
+		<result property="sNo" column="sNo"></result> 
+		<result property="sName" column="courseId"></result>
+		<result property="tNo" column="tNo"></result>
+	</resultMap>
+	<resultMap id="rs2" type="CourseSelectBean">
+		<result property="sNo" column="sno"></result> 
+		<result property="sName" column="sname"></result>
+		<result property="g1" column="g1"></result>
+		<result property="g2" column="g2"></result>
+		<result property="g3" column="g3"></result>
+		<result property="g4" column="g4"></result>
+		<result property="g5" column="g5"></result>
+		<result property="g6" column="g6"></result>
+		<result property="g7" column="g7"></result>
+		<result property="g8" column="g8"></result>
+		<result property="sum" column="sum"></result>
+	</resultMap>
+	<select id="selectCourseSelect"  parameterType="CourseSelect" resultMap="rs1">
+		select * from course_select
+	</select>
+	<select id="selectCoursSelectBySNo" parameterType="string" resultType="CourseSelect">
+		select * from course_select where sNo=#{sNo}
+	</select>
+	<insert id="addCourseSelect" parameterType="CourseSelect">
+		insert into course_select values( #{sNo},#{courseId},#{grade})
+	</insert>
+	<update id="updateCourseSelect" parameterType="CourseSelect">
+		update course_select set
+			<if test="courseId!=null and courseId!=''">
+				collegeId=#{collegeId}
+			</if> 
+			<if test="grade!=null and grade!=''">
+				grade=#{grade}
+			</if>
+		where sNo=#{sNo}
+	</update>
+	<delete id="deleteClasses"  parameterType="java.lang.String">
+		delete from course_select where classesId=#{classId}
+	</delete>
+	<select id="selectCourseInfoAll" resultMap="rs2">
+	select distinct stu.sNo,stu.sName,
+		max(case cs.courseId when '1' then grade  else 0 end) g1, 
+		max(case cs.courseId when '2' then grade  else 0 end) g2,
+		max(case cs.courseId when '3' then grade  else 0 end) g3,
+		max(case cs.courseId when '4' then grade  else 0 end) g4,
+		max(case cs.courseId when '5' then grade  else 0 end) g5,
+		max(case cs.courseId when '6' then grade  else 0 end) g6,
+		max(case cs.courseId when '7' then grade  else 0 end) g7,
+		max(case cs.courseId when '8' then grade  else 0 end) g8	
+       from course_select cs
+       left join stu on stu.sno= cs.sno
+       left join course c on cs.courseId=cs.courseId
+	where cs.courseId=c.courseId and cs.sNo=stu.sNo
+	group by stu.sno,stu.sname
+	</select>
+</mapper>

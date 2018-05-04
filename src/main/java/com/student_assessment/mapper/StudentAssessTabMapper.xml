@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://www.mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.student_assessment.dao.StudentAssessTabDao">
+	
+	<select id="selectStaudentAssessTab" parameterType="java.util.Map" resultType="AssessResultBean">
+  		select distinct t.*,stu.sName from
+       ( select distinct  rownum rn, 
+                sat.sno, 
+                sat.academicYear, 
+                sat.term, 
+                sat.state, 
+                sat.assessManId, 
+                sat.assessDate, 
+                asct.moralTrait,
+                asct.civicLiteracy,
+                asct.liaision, 
+                asct.exerciseHealth, 
+                asct.appearance from ( 
+                     select ast.assessTabId, 
+                            max(nvl(case when ast.assessItemId='1' then ast.assessItemGrade else 0 end,0))as moralTrait, 
+                            max(nvl(case when ast.assessItemId='2' then ast.assessItemGrade else 0 end,0))as civicLiteracy,
+                            max(nvl(case when ast.assessItemId='3' then ast.assessItemGrade else 0 end,0))as liaision,
+                            max(nvl(case when ast.assessItemId='4' then ast.assessItemGrade else 0 end,0))as exerciseHealth, 
+                            max(nvl(case when ast.assessItemId='5' then ast.assessItemGrade else 0 end,0))as appearance 
+                     from assess_score_tab ast group by ast.assessTabId)asct
+              join stu_assess_tab sat 
+               		on asct.assessTabId=sat.assessTabId)t
+			join stu on t.sno=stu.sno 
+        where <![CDATA[rn<=#{end}]]>
+        and   <![CDATA[rn>#{start}]]>
+	</select>
+	<select id="selectStaudentAssessTabCount" resultType="integer">
+		select count(0)from(
+		select distinct t.*,stu.sName from(
+  		select  rownum rn, 
+  		sat.sno,
+       	sat.academicYear,
+       	sat.term,
+       	sat.state,
+       	sat.assessManId,
+       	sat.assessDate,
+       	asct.moralTrait,
+       	asct.civicLiteracy,
+       	asct.liaision,
+       	asct.exerciseHealth,
+       	asct.appearance
+       	from (
+	   	select ast.assessTabId,
+	           max(nvl(case when ast.assessItemId='1' then ast.assessItemGrade else 0 end,0))as moralTrait,
+	           max(nvl(case when ast.assessItemId='2' then ast.assessItemGrade else 0 end,0))as civicLiteracy,
+	           max(nvl(case when ast.assessItemId='3' then ast.assessItemGrade else 0 end,0))as liaision,
+	           max(nvl(case when ast.assessItemId='4' then ast.assessItemGrade else 0 end,0))as exerciseHealth,
+	           max(nvl(case when ast.assessItemId='5' then ast.assessItemGrade else 0 end,0))as appearance
+	       	   from assess_score_tab ast
+	    group by ast.assessTabId)asct  
+        left join  stu_assess_tab  sat
+             on asct.assessTabId=sat.assessTabId)t
+               left join  stu 
+               on t.sno=stu.sno     
+        )
+	</select>
+	<select id="selectStudentFinalAssessment" resultType="AssessResultBean" parameterType="java.util.Map">
+		select t3.rn,
+			t3.sno,
+			t3.sname,
+			t3.academicYear,
+			t3.term,
+			t3.moralTrait,
+			t3.civicLiteracy,
+			t3.liaision,
+			t3.exerciseHealth,
+			t3.appearance,
+			t3.totalScore
+			from(select rownum rn ,t2.* from(select t.sno,
+				   stu.sname,
+				   t.academicYear,
+				   t.term,
+				   sum(t.moralTrait) as moralTrait,
+				   sum(t.civicLiteracy) as civicLiteracy,
+				   sum(t.liaision) as liaision,
+				   sum(t.exerciseHealth) as exerciseHealth,
+				   sum(t.appearance) as appearance,
+				   sum(t.moralTrait+t.civicLiteracy+t.liaision+t.exerciseHealth+t.appearance) as totalScore from(
+				   select 
+		  		    	sat.sno,
+		       			sat.academicYear,
+		       			sat.term,
+				       	sat.state,
+				       	sat.assessManId,
+				       	sat.assessDate,
+				       	asct.moralTrait,
+				       	asct.civicLiteracy,
+				       	asct.liaision,
+				       	asct.exerciseHealth,
+				       	asct.appearance
+				      	from (
+			   		select ast.assessTabId,
+				           max(nvl(case when ast.assessItemId='1' then ast.assessItemGrade else 0 end,0))as moralTrait,
+				           max(nvl(case when ast.assessItemId='2' then ast.assessItemGrade else 0 end,0))as civicLiteracy,
+				           max(nvl(case when ast.assessItemId='3' then ast.assessItemGrade else 0 end,0))as liaision,
+				           max(nvl(case when ast.assessItemId='4' then ast.assessItemGrade else 0 end,0))as exerciseHealth,
+				           max(nvl(case when ast.assessItemId='5' then ast.assessItemGrade else 0 end,0))as appearance
+				       	   from assess_score_tab ast
+				    group by ast.assessTabId)asct  
+					join  stu_assess_tab  sat
+			             on asct.assessTabId=sat.assessTabId)t
+			               join  stu 
+			               on t.sno=stu.sno
+			        group by t.sno,stu.sname, t.academicYear,t.term)t2
+			)t3
+		where 1=1 and <![CDATA[t3.rn<=#{end}]]>
+        and <![CDATA[t3.rn>=#{start}]]>
+	</select>
+	<select id="selectStudentFinalAssessmentCount" resultType="integer">
+	select count(0)from(
+		select t3.rn,
+			t3.sno,
+			t3.sname,
+			t3.academicYear,
+			t3.term,
+			t3.moralTrait,
+			t3.civicLiteracy,
+			t3.liaision,
+			t3.exerciseHealth,
+			t3.appearance,
+			t3.totalScore
+			from(select rownum rn ,t2.* from(select t.sno,
+				   stu.sname,
+				   t.academicYear,
+				   t.term,
+				   sum(t.moralTrait) as moralTrait,
+				   sum(t.civicLiteracy) as civicLiteracy,
+				   sum(t.liaision) as liaision,
+				   sum(t.exerciseHealth) as exerciseHealth,
+				   sum(t.appearance) as appearance,
+				   sum(t.moralTrait+t.civicLiteracy+t.liaision+t.exerciseHealth+t.appearance) as totalScore from(
+				   select 
+		  		    	sat.sno,
+		       			sat.academicYear,
+		       			sat.term,
+				       	sat.state,
+				       	sat.assessManId,
+				       	sat.assessDate,
+				       	asct.moralTrait,
+				       	asct.civicLiteracy,
+				       	asct.liaision,
+				       	asct.exerciseHealth,
+				       	asct.appearance
+				      	from (
+			   		select ast.assessTabId,
+				           max(nvl(case when ast.assessItemId='1' then ast.assessItemGrade else 0 end,0))as moralTrait,
+				           max(nvl(case when ast.assessItemId='2' then ast.assessItemGrade else 0 end,0))as civicLiteracy,
+				           max(nvl(case when ast.assessItemId='3' then ast.assessItemGrade else 0 end,0))as liaision,
+				           max(nvl(case when ast.assessItemId='4' then ast.assessItemGrade else 0 end,0))as exerciseHealth,
+				           max(nvl(case when ast.assessItemId='5' then ast.assessItemGrade else 0 end,0))as appearance
+				       	   from assess_score_tab ast
+				    group by ast.assessTabId)asct  
+					join  stu_assess_tab  sat
+			             on asct.assessTabId=sat.assessTabId)t
+			               join  stu 
+			               on t.sno=stu.sno
+			        group by t.sno,stu.sname, t.academicYear,t.term)t2
+			)t3
+		)
+	</select>
+	<insert id="addStudentAssessTab" parameterType="StudentAssessTab">
+		insert into stu_assess_tab(sNo,assessTabId,academicYear,term,assessDate,state,assessManId)                   
+        values(#{sNo},#{assessTabId},#{academicYear},#{term},#{assessDate},#{state},#{assessManId})   
+	</insert>
+	<delete id="deleteTeacherAssessment" parameterType="java.util.Map">
+		delete from stu_assess_tab where  assessManId=#{assessManId} and sNo=#{sNo}
+	</delete>
+
+</mapper>

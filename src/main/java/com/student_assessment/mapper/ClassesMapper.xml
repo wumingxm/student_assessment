@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://www.mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.student_assessment.dao.ClassesDao">
+	<resultMap id="rs1" type="Classes">
+		<id property="classId" column="classId"></id>
+		<result property="className" column="className"></result> 
+		<result property="collegeId" column="collegeId"></result>
+		<result property="tNo" column="tNo"></result>
+	</resultMap>
+	<select id="selectClasses"  parameterType="Classes" resultMap="rs1">
+		select * from classes
+	</select>
+	<select id="selectClassesById" parameterType="string" resultType="Classes">
+		select * from "classes" where classesId=#{classId}
+	</select>
+	<insert id="addClasses" parameterType="Classes">
+		insert into "classes" values( #{classId},#{className},#{collegeId},#{tNo})
+	</insert>
+	<update id="updateClasses" parameterType="Classes">
+		update "classes" set
+			<if test="className!=null and className!=''">
+				className=#{className}
+			</if> 
+			<if test="collegeId!=null and collegeId!=''">
+				collegeId=#{collegeId}
+			</if> 
+			<if test="tNo!=null and tNo!=''">
+				tNo=#{tNo}
+			</if> 
+		where classesId=#{classId}
+	</update>
+	<delete id="deleteClasses"  parameterType="java.lang.String">
+		delete from "classes" where classesId=#{classId}
+	</delete>
+</mapper>

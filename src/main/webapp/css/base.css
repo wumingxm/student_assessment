@@ -1,0 +1,54 @@
+@CHARSET "UTF-8";
+.nav navbar-nav {
+	font-size:25px;
+	color:'white';
+}
+body{
+	font-family:华文楷体;
+}
+#top {
+   background-color: rgb(193, 223, 179);*/
+    backgroudn-color:'blue'
+    margin-right:0;
+    padding-right:0;
+}
+#top #sysName{
+    font-size:35px;
+    position:relative;
+    font-family:'楷体';
+    left:150px;
+    top:20px;
+}
+#logo{
+    margin-top:5px;
+    position:absolute;
+    left:50px;
+}
+#welcome{
+    font-size:18px;
+    font-family:'楷体';
+    position:absolute;
+    right:100px;
+    top:10px;
+
+}
+#exit{
+    font-size:18px;
+    font-family:'楷体';
+    position:absolute;
+    right:30px;
+    top:10px;
+}
+#sub{
+    margin-top:10px;
+    padding-left:20px;
+}
+.nav > li:hover .dropdown-menu 
+{ 
+	display: block; 
+}
+#time{
+	position:absolute;
+	right:80px;
+	top:60px;"
+}

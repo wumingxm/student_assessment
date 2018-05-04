@@ -1,0 +1,25 @@
+$("#userName").textbox('textbox').bind('blur',function(){
+		$.ajax({
+			url:'/selectUserByUserName',
+			type:'post',
+			data:{'userName':$('#userName').val(),'passWord':$("#passWord").val()},
+			dataTye:'json',
+			success:function(msg){
+				if(msg=="false"){
+					alert("用户名不存在");
+				}
+			}
+			
+		});
+	});
+	$("#sub").click(function(){
+		$.ajax({
+			url:'/updatePassword',
+			type:'post',
+			data:{'userName':$('#userName').val(),'passWord':$("#passWord").val()},
+			dataTye:'json',
+			success:function(msg){
+				alert(msg);
+			}
+		});
+	});

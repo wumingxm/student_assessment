@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://www.mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.student_assessment.dao.TeacherDao">
+	<resultMap id="rs1" type="Teacher">
+		<id property="tNo" column="tNo"></id>
+		<result property="tName" column="tName"></result>
+		<result property="tSex" column="tSex"></result>
+		<result property="tBirthday" column="tBirthday"></result>
+		<result property="tStatus" column="tStatus"></result>
+		<result	property="collegeId" column="collegeId"></result>
+		<result property="id" column="id"></result>
+		<result property="tAge" column="tAge"></result>
+		<result property="tPosition" column="tPosition"></result>
+		<result property="tLivePlace" column="tLivePlace"></result>
+		<result property="tTelephone" column="tTelephone"></result>
+		<result property="tMinority" column="tMinority"></result>
+		<result property="tInDate" column="tInDate"></result>
+		<result property="deptId" column="deptId"></result>
+	</resultMap>
+	<select id="selectTeacher" resultMap="rs1" parameterType="Teacher">
+		select * from teacher
+		<where>
+			<if test="tNo!=null and tNo!=''">
+				and tNo=#{tNo}
+			</if> 
+			<if test="tName!=null and tName!=''">
+				and tName=#{tName}
+			</if> 
+			<if test="tSex !=null and tSex !=''">
+				and tSex =#{tSex}
+			</if> 
+			<if test="tAge!=null and tAge !=''">
+				and tAge =#{tAge}
+			</if> 
+			<if test="tBirthday !=null and tBirthday !=''">
+				and tBirthday =#{tBirthday}
+			</if> 
+			<if test="tStatus !=null and tStatus!=''">
+				and sStatus =#{sStatus}
+			</if> 
+			<if test="collegeId !=null and collegeId!=''">
+				and collegeId =#{collegeId}
+			</if> 
+			<if test="tPosition!=null and tPosition!=''" >
+				and tPosition=#{tPosition}
+			</if>
+			<if test="tLivePlace !=null and tLivePlace!=''">
+				and tLivePlace=#{tLivePlace}
+			</if>
+			<if test="tTelephone!=null and tTelephone!=''">
+				and tTelephone=#{tTelephone}
+			</if>
+			<if test="tMinority!=null and tMinority!=''" >
+				and tMinority=#{tMinority}
+			</if>
+			<if test="tInDate!=null and tInDate!=''">
+				and tInDate=#{#tInDate}			
+			</if>
+			<if test="deptId!=null and deptId!=''">
+				and deptId=#{deptId}
+			</if>
+		</where>
+	</select>
+	<select id="selectTeacherByTNo" parameterType="string" resultType="Teacher">
+		select * from teacher where  tNo=#{tNo}
+	</select>
+	<insert id="addTeacher" parameterType="Teacher">
+		insert into "teacher"  values( #{collegeId}, #{tName},#{tSex},#{tMinority},#{tStatus},#{id},#{tInDate},#{tPoisition},#{tInDate},#{tLivePlace},#{tTelephone},#{tNo},#{deptId},#{tAge})
+	</insert>
+	<update id="updateTeacher" parameterType="Teacher">
+		update teacher set
+			<if test="tName!=null and tName!=''">
+				tName=#{tName}
+			</if> 
+			<if test="tSex !=null and tSex !=''">
+				tSex =#{tSex}
+			</if> 
+			<if test="tAge!=null and tAge !=''">
+				tAge =#{tAge}
+			</if> 
+			<if test="tBirthday !=null and tBirthday !=''">
+				tBirthday =#{tBirthday}
+			</if> 
+			<if test="tStatus !=null and tStatus!=''">
+				sStatus =#{sStatus}
+			</if> 
+			<if test="colleageId !=null and colleageId!=''">
+				colleageId =#{colleageId}
+			</if> 
+			<if test="tPostion!=null and tPosition!=''" >
+				tPosition=#{tPosition}
+			</if>
+			<if test="tLivePlace !=null and tLivePlace!=''">
+				tLivePlace=#{tLivePlace}
+			</if>
+			<if test="tTelephone!=null and tTelephone!=''">
+				tTelephone=#{tTelephone}
+			</if>
+			<if test="tMinority!=null and tMinority!=''" >
+				tMinority=#{tMinority}
+			</if>
+			<if test="tInDate!=null and tInDate!=''">
+				tInDate=#{#tInDate}			
+			</if>
+			<if test="deptId!=null and deptId!=''">
+				deptId=#{deptId}
+			</if>
+		where tNo=#{tNo}
+	</update>
+	<delete id="deleteTeacher"  parameterType="java.lang.String">
+		delete from teacher where tNo=#{value}
+	</delete>
+</mapper>

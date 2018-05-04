@@ -1,0 +1,135 @@
+  	.navbar-collapse{
+		background-color:rgb(193, 223, 179);
+	}
+  body {
+        margin-left: 0;
+        margin-top: 0;
+        margin-right: 0;
+    }
+
+    #top {
+        width: 100%;
+        height: 110px;
+        background-color: rgb(193, 223, 179);
+    }
+
+    #top h1 {
+        margin-left: 20px;
+    }
+
+    #password_l1 {
+        margin-left: 25px;
+    }
+
+    #password_l1, #username_l1, #validate_l1 {
+        font-size: 25px;
+        font-family: '楷体';
+    }
+
+    #userName_div,#password_div,#validate_div {
+        margin-left:20px;
+    }
+    #userName_div{
+        margin-top:40px;
+    }
+    #password_div,#validate_div{
+        margin-top:30px;
+    }
+    #userTypeName_div{
+      	margin-top:30px;
+    }
+    #main {
+        width: 100%;
+        height:720px;
+        background-color: rgb(105, 179, 242);
+    }
+
+    #login {
+        margin-left: 585px;
+        position: relative;
+        top: 30px;
+    }
+    .easyui-validatebox{
+        background-color:floralwhite;
+    }
+    p {
+        margin-top: 12px;
+        margin-left: 47px;
+        font-size: 20px;
+    }
+
+    #validate {
+        width: 136px;
+        height: 40px;
+    }
+
+    #submit_div {
+        margin-top: 49px;;
+        margin-left: 18px;
+    }
+
+    #submit {
+        width: 351px;
+        height: 42px;
+        border-radius: 2px;
+        font-color: rgb(145, 208, 213);
+    }
+
+    #img {
+        margin-left: 30px;
+        height: 90px;
+        width: 90px;
+    }
+
+    #systemName {
+        font-size: 30px;
+        font-family: '楷体';
+        height: 40px;
+        position: absolute;
+        top: 20px;
+        left: 140px;
+    }
+
+    #footer p {
+        margin-left: 600px;
+        margin-top: 40px;
+    }
+
+    #user_login {
+        width: 242px;
+        height: 80px;
+        display: inline;
+        margin-top: 10px;
+    }
+
+    #user_regist {
+        width: 242px;
+        height: 80px;
+        display: inline;
+        font-size: 20px;
+        font-family: '楷体';
+    }
+
+    #user_login a {
+        padding-left: 100px;
+        padding-top: 15px;
+        font-size: 20px;
+        font-family: '楷体';
+        position: relative;
+        top: 15px;
+    }
+
+    #user_regist a {
+        padding-left: 80px;
+        position: relative;
+        top: 15px;
+        text-decoration: none;
+    }
+
+    hr {
+        position: relative;
+        top: 20px;
+    }
+    #img{
+    	margin:0,0,0,0;
+    }

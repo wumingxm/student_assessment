@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://www.mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.student_assessment.dao.AssessStandardDao">
+	<resultMap type="AssessStandard" id="rs1">
+		<id column="assess_item_id" property="assessItemId"/>
+		<id column="assess_item_name" property="assessItemName"/>
+		<id column="assess_item_date" property="assessItemDate"/>
+	</resultMap>
+	<select id="selectAssessStandard" parameterType="AssessStandard" resultMap="rs1">
+		select * from assess_standard_tab
+		<where>	
+			<if test="assessItemId!=null and assessItemId!=''">
+				and assess_item_id=#{assessItemId}
+			</if>
+			<if test="assessItemName!=null and assessItemName!=''" >
+				and assess_item_name=#{assessItemName}
+			</if>
+		</where>
+	</select>
+	<insert id="addAssessStandard" parameterType="AssessStandard">
+		insert into assess_standard_tab  values(#{assessItemId},#{assessItemName},#{assessItemDate})
+	</insert>
+	<update id="updateAssessStandard" parameterType="AssessStandard">
+		update assess_standard_tab 
+		<set>
+			<if test="assessItemName!=null and assessItemName!=''" >
+				and assess_item_name=#{assessItemName}
+			</if>
+		</set>
+		where assess_item_id=#{value}
+	</update>
+	<delete id="deleteAssessStandardById"  parameterType="java.lang.String">
+		delete from assess_standard_tab where assess_item_id=#{value}
+	</delete>
+</mapper>
