@@ -33,7 +33,6 @@
 	<mvc:resources mapping="/easyui/**" location="/easyui/"></mvc:resources>
 	<mvc:resources mapping="/img/**" location="/img/"></mvc:resources>
 	<mvc:resources mapping="/bootstrap-validator/**" location="/bootstrap-validator/"></mvc:resources>
-
 	<!-- 配置注解驱动 -->
 	<mvc:annotation-driven />
 	<mvc:annotation-driven>  
