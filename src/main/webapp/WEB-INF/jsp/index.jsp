@@ -76,7 +76,9 @@
 					data-toggle="dropdown">课程基本信息管理<strong class="caret"></strong></a>
 					<ul class="dropdown-menu">
 						<li><a
-							href="${pageContext.request.contextPath}/selectCourseSelect?page=1&pageSize=12">课程信息管理</a></li>
+							href="${pageContext.request.contextPath}/selectCourseSelect?page=1&pageSize=8">课程信息管理</a></li>
+						<li><a
+							href="${pageContext.request.contextPath}/selectCourseSelect?page=1&pageSize=8">学生成绩查询</a></li>
 					</ul></li>
 				<li class="dropdown"><a class="dropdown-toggle" href="#"
 					data-toggle="dropdown">评价标准管理<strong class="caret"></strong></a>

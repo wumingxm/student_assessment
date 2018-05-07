@@ -9,15 +9,16 @@ import java.io.Serializable;
 
 public class Course implements Serializable
 {
-
-	private String courseId;
-	private String courseName;
-	private String tNo;
-
-	public Course()
-	{
-	}
-
+	private String courseId;//课程ID
+	
+	private String courseName;//课程名称
+	
+	private Integer courseScore;//学分
+	
+	private String tNo;//教工号
+	
+	private String courseTypeId;//课程类型
+	
 	public String getCourseId()
 	{
 		return courseId;
@@ -47,4 +48,21 @@ public class Course implements Serializable
 	{
 		this.tNo = tNo;
 	}
+
+	public Integer getCourseScore() {
+		return courseScore;
+	}
+
+	public void setCourseScore(Integer courseScore) {
+		this.courseScore = courseScore;
+	}
+
+	public String getCourseTypeId() {
+		return courseTypeId;
+	}
+
+	public void setCourseTypeId(String courseTypeId) {
+		this.courseTypeId = courseTypeId;
+	}
+	
 }

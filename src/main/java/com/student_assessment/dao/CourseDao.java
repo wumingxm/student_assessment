@@ -11,17 +11,17 @@ import java.util.List;
 public interface CourseDao
 {
 
-	public abstract Course selectCourseBySNo(String s);
+	 Course selectCourseBySNo(String s);
 
-	public abstract void deleteCourse(String s);
+	 void deleteCourse(String s);
 
-	public abstract void updateCourse(Course course);
+	 void updateCourse(Course course);
 
-	public abstract void addCourse(Course course);
+	 void addCourse(Course course);
 
-	public abstract List selectCourse(Course course);
+	 List selectCourseAll(Course course);
 
-	public abstract void addCourseList(List list);
+	 void addCourseList(List list);
 
-	public abstract void updateCourseList(List list);
+	 void updateCourseList(List list);
 }

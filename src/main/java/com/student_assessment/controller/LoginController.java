@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.student_assessment.pojo.User;
 import com.student_assessment.service.UserService;
@@ -18,9 +19,15 @@ public class LoginController
 {
 	@Autowired
 	private UserService userService;
-	@RequestMapping("/user_login")
+	@RequestMapping(name="/user_login")
 	public String login(User user, HttpServletRequest request)
-	{
+	{	
+		if(user==null) {
+			return "login";
+		}
+		if(user.getUserName()==null) {
+			return  "login";
+		}
 		User user2 = userService.selectUserByUserName(user.getUserName());
 		if (user2 == null)
 		{

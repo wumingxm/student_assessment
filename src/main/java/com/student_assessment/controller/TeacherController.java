@@ -15,6 +15,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
@@ -41,5 +42,12 @@ public class TeacherController
 		pb.setTotalPage();
 		request.setAttribute("pb",pb);
 		return "tea_infor_set";
+	}
+	@RequestMapping("/selectTeacherInfo")
+	@ResponseBody
+	public List<Teacher> selectTeacherInfo(HttpServletRequest request,Teacher tea, @RequestParam(name="page",defaultValue="1")Integer page, @RequestParam(name="pageSize",defaultValue="10")Integer pageSize)
+	{
+		List list = teacherService.selectTeacher(tea);
+		return list;
 	}
 }

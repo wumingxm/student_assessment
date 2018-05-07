@@ -5,67 +5,27 @@
 
 package com.student_assessment.util;
 
+import java.io.Serializable;
 
-public class CourseBean
-{
+import com.student_assessment.pojo.Course;
 
-	private String courseId;
-	private String courseName;
-	private String sNo;
-	private String sName;
-	private String grade;
-
-	public CourseBean()
-	{
+public class CourseBean  extends Course implements Serializable{
+	private String tName;
+	private Integer courseScore;
+	public String gettName() {
+		return tName;
 	}
 
-	public String getCourseId()
-	{
-		return courseId;
+	public void settName(String tName) {
+		this.tName = tName;
 	}
 
-	public void setCourseId(String courseId)
-	{
-		this.courseId = courseId;
+	public Integer getCourseScore() {
+		return courseScore;
 	}
 
-	public String getCourseName()
-	{
-		return courseName;
+	public void setCourseScore(Integer courseScore) {
+		this.courseScore = courseScore;
 	}
-
-	public void setCourseName(String courseName)
-	{
-		this.courseName = courseName;
-	}
-
-	public String getsNo()
-	{
-		return sNo;
-	}
-
-	public void setsNo(String sNo)
-	{
-		this.sNo = sNo;
-	}
-
-	public String getsName()
-	{
-		return sName;
-	}
-
-	public void setsName(String sName)
-	{
-		this.sName = sName;
-	}
-
-	public String getGrade()
-	{
-		return grade;
-	}
-
-	public void setGrade(String grade)
-	{
-		this.grade = grade;
-	}
+	
 }

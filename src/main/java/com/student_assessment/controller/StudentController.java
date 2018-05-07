@@ -24,6 +24,7 @@ import com.student_assessment.util.StudentBean;
 
 @Controller
 public class StudentController
+
 {
 	@Autowired
 	private StudentService studentService;
@@ -39,7 +40,6 @@ public class StudentController
 		pb.setTotal(Long.valueOf(pageInfo.getTotal()));
 		pb.setPageSize(pageSize);
 		pb.setTotalPage();
-		request.setAttribute("pb",pb);
 		request.setAttribute("pb",pb);
 		return "stu_infor_set";
 	}

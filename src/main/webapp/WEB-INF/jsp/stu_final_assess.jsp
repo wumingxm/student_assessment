@@ -9,7 +9,8 @@
 </head>
 <body>
 	<jsp:include page="base.jsp"></jsp:include>
-	<div style="margin-top:10px;">
+	<div style="margin-top:10px;
+		font-size:15px;">
 		<form method="post" action="${pageContext.request.contextPath}/selectUser/1/10" id="ff">
 			<label for="#sNo1">学号:</label> <input type="text"
 				id="sNo1" name="sNo" class="easyui-textbox" placeholder="请输入学号"/>
@@ -22,7 +23,11 @@
 		<br/>
 		<a class="glyphicon glyphicon-plus-sign"  href="#" data-toggle="modal" data-target="#tea_assess_tab" style="color:green;margin-left:5px;" style="margin-top:10px;">添加教师评价信息</a>
 		<table id="index" class="table table-bordered"
-		style="text-align:center;table-layout:fixed;margin-top:10px;">
+		style="text-align:center;
+		table-layout:fixed;
+		margin-top:10px;
+		font-size:15px;
+		margin-left:5px;">
 		<tr id="caption">
 			<td>学号</td>
 			<td>姓名</td>

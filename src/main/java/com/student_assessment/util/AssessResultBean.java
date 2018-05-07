@@ -1,29 +1,39 @@
 package com.student_assessment.util;
 
+import java.io.Serializable;
 import java.util.Date;
-import java.util.List;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
-import com.student_assessment.pojo.AssessScoreTab;
-import com.student_assessment.pojo.StudentAssessTab;
-
-public class AssessResultBean {
+public class AssessResultBean implements Serializable {
 	private String sName;
+
 	private String assessTabId;
+
 	private String sNo;
-	private String state; //0表示未评价，1表示学生已经自我评价，2表示教师已经评价，3表示评价完成
-	private String academicYear;//学年  
-	private String assessManId;//评价人Id
-	@DateTimeFormat(pattern="yyyy-MM-dd")
-	private Date assessDate;
-	private String term;
-	private Integer moralTrait;
-   	private Integer civicLiteracy;
-   	private Integer liaision;
-   	private Integer exerciseHealth;
-   	private Integer appearance;
-   	private Integer totalScore;
+
+	private String state; // 0表示未评价，1表示学生已经自我评价，2表示教师已经评价，3表示评价完成
+
+	private String academicYear;// 学年
+
+	private String assessManId;// 评价人Id
+
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
+	private Date assessDate;// 评价日期
+
+	private String term;// 学期
+
+	private Integer moralTrait;// 道德素养
+
+	private Integer civicLiteracy;// 公民素养
+
+	private Integer liaision;// 交流与合作
+
+	private Integer exerciseHealth;// 运动与健康
+
+	private Integer appearance;//审美表现
+   	
+	private Integer totalScore;//总分
 	public String getsName() {
 		return sName;
 	}

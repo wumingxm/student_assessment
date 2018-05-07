@@ -5,25 +5,30 @@
 
 package com.student_assessment.dao;
 
-import com.student_assessment.pojo.CourseSelect;
 import java.util.List;
+
+import com.student_assessment.pojo.CourseSelect;
+import com.student_assessment.util.CourseSelectBean;
+import com.student_assessment.util.CourseSelectResultBean;
 
 public interface CourseSelectDao
 {
 
-	public abstract List selectCourseSelectBySNo(String s);
+	 List selectCourseSelectBySNo(String s);
 
-	public abstract void deleteCourseSelect(String s);
+	 void deleteCourseSelect(String s);
 
-	public abstract void updateCourseSelect(CourseSelect courseselect);
+	 void updateCourseSelect(CourseSelect courseselect);
 
-	public abstract void addCourseSelect(CourseSelect courseselect);
+	 void addCourseSelect(CourseSelect courseselect);
 
-	public abstract List selectCollge(CourseSelect courseselect);
+	 List selectCollge(CourseSelect courseselect);
 
-	public abstract void addCourseSelectList(List list);
+	 void addCourseSelectList(List list);
 
-	public abstract void updateCourseSelectList(List list);
+	 void updateCourseSelectList(List list);
 
-	public abstract List selectCourseInfoAll();
+	 List<CourseSelectBean> selectCourseInfoAll();
+	 
+	 List<CourseSelectResultBean>selectCourselectAll();
 }

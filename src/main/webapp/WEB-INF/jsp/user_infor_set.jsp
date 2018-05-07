@@ -8,7 +8,7 @@
 <title>用户管理</title>
 <body>
 	<jsp:include page="base.jsp"></jsp:include>
-	<div style="margin-top: 10px;">
+	<div style="margin-top: 10px;font-size:15px;">
 		<form method="post"
 			action="${pageContext.request.contextPath}/selectUserDetialInformation?page=1&pageSize=10"
 			id="ff">
@@ -22,9 +22,14 @@
 				<button class="btn btn-primary">提交</button>
 		</form>
 		<a class="glyphicon glyphicon-plus-sign" data-toggle="modal"
-			data-target="#addDialogue" style="color: green; margin-left: 5px;">添加用户</a>
+			data-target="#addDialogue" style="color:'#54FF9F'; margin-left: 5px;">添加用户</a>
 		<table id="index" class="table table-bordered"
-			style="text-align: center; table-layout: fixed; margin-top: 10px;">
+			style="text-align: center; 
+			table-layout: fixed; 
+			margin-top: 10px;
+			margin-left:5px;
+			margin-right:5px;
+			font-size:15px;">
 			<tr id="caption">
 				<td>用户工号</td>
 				<td>用户名</td>
@@ -43,7 +48,7 @@
 					<td><a id="edit" +userBean.index
 						class=" glyphicon glyphicon-pencil" data-toggle="modal"
 						data-target="#editDialogue" onclick="setValues(this)"
-						style="color: #EE2C2C">&nbsp;</a> &nbsp;<a id="del"
+						style="color: '#54FF9F'">&nbsp;</a> &nbsp;<a id="del"
 						+userBean.index class="glyphicon glyphicon-trash"
 						style="margin-left: 10px; color: #EE2C2C"
 						onclick="deleteRow(this)">&nbsp</a></td>
@@ -206,7 +211,7 @@
 					</div>
 					<div class="modal-footer">
 						<button type="button" class="btn btn-default" id="save2">保存</button>
-						<button type="button" class="btn btn-primary" id="close2">关闭</button>
+						<button type="button" data-dismiss="modal" class="btn btn-primary" id="close2">关闭</button>
 					</div>
 				</div>
 			</div>
@@ -326,10 +331,11 @@
 			var rName=$(tr).children("td:eq(2)").html();
 			var passWord=$(tr).children("td:eq(3)").html();
 			var userTypeName=$(tr).children("td:eq(4)").val();
-			$("#addDialogue #rNo2").val(rNo);
-			$("#addDialogue #userName2").val(userName);
-			$("#addDialogue #passWord2").val(passWord);	
-			$("#addDialogue #userTypeId2").val(userTypeName);
+			alert(rNo);
+			$("#editDialogue #rNo2").val(rNo);
+			$("#editDialogue #userName2").val(userName);
+			$("#editDialogue #passWord2").val(passWord);	
+			$("#editDialogue #userTypeId2").val(userTypeName);
 			var userTypeOptions=$("#addDialogue #userTypeName").find("option");
 			for(var i=1;i<=userTypeOptions.length;i++){
 				if(userTypeName==userTypeOptions[i].html()){

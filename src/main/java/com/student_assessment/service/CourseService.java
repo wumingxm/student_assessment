@@ -10,18 +10,12 @@ import java.util.List;
 
 public interface CourseService
 {
+	 void deleteCourse(String s);
 
-	public abstract Course selectCourseBySNo(String s);
+	 void updateCourse(Course course);
 
-	public abstract void deleteCourse(String s);
+	 void addCourse(Course course);
 
-	public abstract void updateCourse(Course course);
+	 List selectCourseAll(Course course);
 
-	public abstract void addCourse(Course course);
-
-	public abstract List selectCourse(Course course);
-
-	public abstract void addCourseList(List list);
-
-	public abstract void updateCourseList(List list);
 }

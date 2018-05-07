@@ -9,28 +9,24 @@
 	<jsp:include page="base.jsp"></jsp:include>
 	<div id="toolbar">
 	 <form id="ff" action="${pageContext.request.contextPath}/selectCourseSelect" style="margin-top:10px;margin-left:10px;">
-		<label for="#sNo" id="sNO_L1">学号</label>
+		<label for="#sNo" id="sNO_L1" style="font-size:15px;"">学号</label>
 		<input type="text" id="sNo" class="easyui-textbox" name="sNo" />
-		<label for="#sName" id="sName_L1">姓名</label>
+		<label for="#sName" id="sName_L1" style="font-size:15px;"">姓名</label>
 		<input type="text" id="sName" class="easyui-textbox" name="sName" />
 		<a class="easyui-linkbutton" onclick="sub();">查询</a>
 	</form>
 	</div>
-	<table id="index" class="table table-bordered"
-		style="text-align:center;table-layout:fixed">
+	<table id="index" class="table table-bordered" 
+		style="text-align:center;table-layout:fixed;font-size:15px;margin-left:5px;margin-right:5px;">
 		<tr id="caption">
-			<td style="width:150px;">学号</td>
-			<td>姓名</td>
-			<td style="width:150px;">C语言程序设计</td>
-			<td>高等数学</td>
-			<td>离散数学</td>
-			<td>大学物理</td>
-			<td>计算机导论</td>
-			<td>大学体育</td>
-			<td style="width:150px;"">马克思主义原理</td>
-			<td>模拟电路</td>
-			<td>总分</td>
+			<td style="width:120px;">学号</td>
+			<td style="width:100px;"">姓名</td>
+			<c:forEach items="${csrb}" var="csrb">
+				<td style="width:120px;">${csrb.courseName}</td>
+			</c:forEach>
+			<td style="width:80px;"">总分</td>
 		</tr>
+			
 		<c:forEach items="${pb.rows}" var="grade">
 			<tr>
 				<td>${grade.sNo}</td>

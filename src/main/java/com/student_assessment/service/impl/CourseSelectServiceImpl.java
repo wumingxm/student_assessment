@@ -14,9 +14,11 @@ import org.springframework.stereotype.Service;
 import com.student_assessment.dao.CourseSelectDao;
 import com.student_assessment.pojo.CourseSelect;
 import com.student_assessment.service.CourseSelectService;
+import com.student_assessment.util.CourseSelectBean;
+import com.student_assessment.util.CourseSelectResultBean;
 
 @Service
-public class CourseSelectServiceImpl implements CourseSelectService {
+class CourseSelectServiceImpl implements CourseSelectService {
 	@Autowired
 	private CourseSelectDao courseSelectDao;
 
@@ -55,8 +57,13 @@ public class CourseSelectServiceImpl implements CourseSelectService {
 	public List selectCollegeSelectBySNo(String sNo) {
 		return courseSelectDao.selectCourseSelectBySNo(sNo);
 	}
-
-	public List selectCourseInfoAll() {
+	//查询学生成绩
+	public List<CourseSelectBean> selectCourseInfoAll() {
 		return courseSelectDao.selectCourseInfoAll();
+	}
+	//查询学生所选的课程名称
+	@Override
+	public List<CourseSelectResultBean> selectCourseSelectAll() {
+		return courseSelectDao.selectCourselectAll();
 	}
 }

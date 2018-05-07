@@ -3,6 +3,7 @@ package com.student_assessment.util;
 public class CourseSelectBean {
 	private String sNo;
 	private String sName;
+	private String gradeString;
 	private Integer g1;
 	private Integer g2;
 	private Integer g3;
@@ -78,5 +79,11 @@ public class CourseSelectBean {
 	}
 	public void setG8(Integer g8) {
 		this.g8 = g8;
+	}
+	public String getGradeString() {
+		return gradeString;
+	}
+	public void setGradeString(String gradeString) {
+		this.gradeString = gradeString;
 	}
 }

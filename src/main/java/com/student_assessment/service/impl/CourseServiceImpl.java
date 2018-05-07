@@ -20,10 +20,6 @@ public class CourseServiceImpl implements CourseService {
 	@Autowired
 	private CourseDao courseDao;
 
-	public Course selectCourseBySNo(String courseId) {
-		return courseDao.selectCourseBySNo(courseId);
-	}
-
 	public void deleteCourse(String courseId) {
 		courseDao.deleteCourse(courseId);
 	}
@@ -37,20 +33,7 @@ public class CourseServiceImpl implements CourseService {
 		courseDao.addCourse(course);
 	}
 
-	public List selectCourse(Course course) {
-		return courseDao.selectCourse(course);
-	}
-
-	public void addCourseList(List cList) {
-		Course course;
-		for (Iterator iterator = cList.iterator(); iterator.hasNext(); courseDao.addCourse(course))
-			course = (Course) iterator.next();
-
-	}
-
-	public void updateCourseList(List cList) {
-		Course course;
-		for (Iterator iterator = cList.iterator(); iterator.hasNext(); courseDao.updateCourse(course))
-			course = (Course) iterator.next();
+	public List selectCourseAll(Course course) {
+		return courseDao.selectCourseAll(course);
 	}
 }

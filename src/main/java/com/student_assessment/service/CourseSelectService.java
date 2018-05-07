@@ -5,25 +5,29 @@
 
 package com.student_assessment.service;
 
-import com.student_assessment.pojo.CourseSelect;
 import java.util.List;
 
-public interface CourseSelectService
+import com.student_assessment.pojo.CourseSelect;
+import com.student_assessment.util.CourseSelectBean;
+import com.student_assessment.util.CourseSelectResultBean;
+
+ public interface CourseSelectService
 {
+	 List selectCollegeSelectBySNo(String s);
 
-	public abstract List selectCollegeSelectBySNo(String s);
+	 void deleteCourseSelect(String s);
 
-	public abstract void deleteCourseSelect(String s);
+	 void updateCourseSelect(CourseSelect courseselect);
 
-	public abstract void updateCourseSelect(CourseSelect courseselect);
+	 void addCourseSelect(CourseSelect courseselect);
 
-	public abstract void addCourseSelect(CourseSelect courseselect);
+	 List selectCollge(CourseSelect courseselect);
 
-	public abstract List selectCollge(CourseSelect courseselect);
+	 void addCourseSelectList(List list);
 
-	public abstract void addCourseSelectList(List list);
-
-	public abstract void updateCourseSelectList(List list);
-
-	public abstract List selectCourseInfoAll();
+	 void updateCourseSelectList(List list);
+	 
+	 List<CourseSelectBean> selectCourseInfoAll();
+	 
+	 List<CourseSelectResultBean>selectCourseSelectAll();
 }

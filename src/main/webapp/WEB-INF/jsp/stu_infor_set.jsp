@@ -14,7 +14,7 @@
 </style>
 <body>
 	<jsp:include page="base.jsp"></jsp:include>
-	<div style="margin-top:5px">
+	<div style="margin-top:5px;font-size:15px;">
 		<form method="post" action="selectStudent" id="ff">
 			<label for="#collegeName">学院:</label> <select id="collegeName"
 				name="collegeId" class="easyui-combobox" data-options="url:'/selectCollege',textField:'collegeName',valueField:'collegeId',editable:false">
@@ -30,7 +30,12 @@
 			<a class="easyui-linkbutton" onclick="submit();">查询</a>
 		</form>
 		<table id="index" class="table table-bordered"
-		style="text-align:center;table-layout:fixed;margin-top:10px;">
+		style="
+			text-align:center;
+			table-layout:fixed;
+			margin-top:10px;
+			font-size:15px;
+			margin-left:5px;">
 		<tr id="caption">
 			<td width="180px;">身份证号</td>
 			<td>学号</td>

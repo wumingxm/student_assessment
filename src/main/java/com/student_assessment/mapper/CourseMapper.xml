@@ -3,25 +3,64 @@
 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://www.mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.student_assessment.dao.CourseDao">
-	<resultMap id="rs1" type="Course">
+	<resultMap id="rs1" type="CourseBean">
 		<id property="courseId" column="courseId"></id>
 		<result property="courseName" column="courseName"></result>
+		<result property="courseScore" column="courseScore"></result>
 		<result property="tNo" column="tNo"></result>
+		<result property="tName" column="tName"></result>
+		<result property="courseTypeId" column="courseTypeId"></result>
 	</resultMap>
-	<select id="selectCourseById" parameterType="string" resultType="Course">
-		select * from "course" where collegeId=#{courseId}
-	</select>
-	<insert id="addCourse" parameterType="Course">
-		insert into "course" values( #{courseId},#{courseName},#{tNo})
-	</insert>
-	<update id="updateCourse" parameterType="Course">
-		update "course" set
+	
+	<select id="selectCourseAll" parameterType="Course" resultMap="rs1">
+		select 
+			c.courseId,
+			c.courseName,
+			c.courseScore,
+			c.courseTypeId,
+			t.tNO,
+			t.tName
+		from course c
+		join teacher t on c.tNo=t.tNo
+		<where>
+			<if test="courseId!=null and courseId!=''">
+				and courseId=#{courseId}
+			</if>
 			<if test="courseName!=null and courseName!=''">
-				courseName=#{courseName}
-			</if> 
+				and courseName=#{courseName}
+			</if>
+			<if test="tNo!=null and tNo!=''">
+				and t.tNo=#{tNo}
+			</if>
+			<if test="courseTypeId!=null and courseTypeId!=''">
+				and c.courseTypeId=#{courseTypeId}
+			</if>
+		</where>
+		order by courseId asc
+	</select>
+	
+	<insert id="addCourse" parameterType="Course">
+		insert into course(courseId,courseName,courseTypeId,courseScore,tNo) values( #{courseId},#{courseName},#{courseTypeId},#{courseScore},#{tNo})
+	</insert>
+	
+	<update id="updateCourse" parameterType="Course">
+		update course 
+			<trim prefix="SET" suffixOverrides=",">
+				<if test="courseScore!=null and courseScore!=''">
+					courseScore=#{courseScore},
+				</if> 
+				<if test="tNo!=null and tNo!=''">
+					tNo=#{tNo},
+				</if> 
+				<if test="courseTypeId!=nul and courseTypeId!=''">
+					courseTypeId=#{courseTypeId}
+				</if>
+			</trim>
+			
 		where courseId=#{courseId}
 	</update>
+	
 	<delete id="deleteCourse"  parameterType="java.lang.String">
-		delete from "course" where collegeId=#{courseId}
+		delete from course where courseId=#{courseId}
 	</delete>
 </mapper>
