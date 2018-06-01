@@ -5,33 +5,61 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 <mapper namespace="com.student_assessment.dao.AssessStandardDao">
 	<resultMap type="AssessStandard" id="rs1">
 		<id column="assess_item_id" property="assessItemId"/>
-		<id column="assess_item_name" property="assessItemName"/>
-		<id column="assess_item_date" property="assessItemDate"/>
+		<result column="assess_item_name" property="assessItemName"/>
+		<result column="assess_item_date" property="assessItemDate"/>
+		<result column="standardState" property="standardState"/>
 	</resultMap>
+	<!-- 根据指标的的名称查询指标从小到大的 -->
+	<select id="selectStandardLocation" parameterType="string" resultType="integer">
+		select rn from (select row_number() over(order by to_number(assessItemId)) rn,
+ 		to_number(assessItemId),assessItemName  from assess_standard_tab  
+		where standardState!=0
+		order by to_number(assessItemId) asc ) 
+		where assessItemName=#{value}
+	</select>
+	<!-- 查询所有评价标准 -->
 	<select id="selectAssessStandard" parameterType="AssessStandard" resultMap="rs1">
-		select * from assess_standard_tab
+		select assessItemId,assessItemName,assessItemDate,decode(standardState,'1','已启用','0','未启用','2','必用')as standardState,weight from assess_standard_tab
 		<where>	
 			<if test="assessItemId!=null and assessItemId!=''">
-				and assess_item_id=#{assessItemId}
+				and assessItemId=#{assessItemId}
 			</if>
 			<if test="assessItemName!=null and assessItemName!=''" >
-				and assess_item_name=#{assessItemName}
+				and assessItemName=#{assessItemName}
+			</if>
+			<if test="standardState!=null and standardState!=''">
+				and standardState=#{standardState}
 			</if>
 		</where>
+		order by to_number(assessItemId) asc
+	</select>
+	<select id="selectAssessStandardById"  parameterType="string" resultType="AssessStandard">
+		select assessItemName from assess_standard_tab where assessItemId=#{value}
+	</select>
+	<select id="selectAssessStandardByName" parameterType="string" resultType="AssessStandard">
+		select assessItemName from  assess_standard_tab where assessItemName=#{value}
 	</select>
 	<insert id="addAssessStandard" parameterType="AssessStandard">
-		insert into assess_standard_tab  values(#{assessItemId},#{assessItemName},#{assessItemDate})
+		insert into assess_standard_tab(assessItemId,assessItemName,assessItemDate,standardState)  values(#{assessItemId},#{assessItemName},#{assessItemDate},#{standardState})
 	</insert>
+	
 	<update id="updateAssessStandard" parameterType="AssessStandard">
 		update assess_standard_tab 
 		<set>
 			<if test="assessItemName!=null and assessItemName!=''" >
-				and assess_item_name=#{assessItemName}
+				assessItemName=#{assessItemName},
+			</if>
+			<if test="standardState!=null and standardState!=''">
+				standardState=#{standardState},
+			</if>
+			<if test="weight!=null and weight!=''">
+				weight=#{weight}
 			</if>
 		</set>
-		where assess_item_id=#{value}
+		where assessItemId=#{assessItemId}
 	</update>
-	<delete id="deleteAssessStandardById"  parameterType="java.lang.String">
-		delete from assess_standard_tab where assess_item_id=#{value}
+	
+	<delete id="deleteAssessStandard"  parameterType="java.lang.String">
+		delete from assess_standard_tab where assessItemId=#{value}
 	</delete>
 </mapper>

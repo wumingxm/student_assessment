@@ -22,7 +22,7 @@ public interface StudentService
 
 	void addStudent(Student student);
 
-	List<StudentBean> selectStudent(Student student);
+	List<StudentBean> selectStudent(Student s);
 
 	void addStudentList(List list);
 

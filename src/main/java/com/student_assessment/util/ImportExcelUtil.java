@@ -30,7 +30,7 @@ public class ImportExcelUtil
 		List list = null;
 		Workbook work = getWorkbook(in, fileName);
 		if (work == null)
-			throw new Exception("创建Excel工作薄为空！");
+			throw new Exception("瀵煎叆鏁版嵁寮傚父");
 		Sheet sheet = null;
 		Row row = null;
 		Cell cell = null;
@@ -74,7 +74,7 @@ public class ImportExcelUtil
 		if (".xlsx".equals(fileType))
 			wb = new XSSFWorkbook(inStr);
 		else
-			throw new Exception("解析的文件格式有误！");
+			throw new Exception("瀵煎叆鏁版嵁寮傚父");
 		return wb;
 	}
 

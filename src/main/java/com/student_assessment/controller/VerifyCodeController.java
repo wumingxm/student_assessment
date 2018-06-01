@@ -1,10 +1,5 @@
-// Decompiled by Jad v1.5.8e2. Copyright 2001 Pavel Kouznetsov.
-// Jad home page: http://kpdus.tripod.com/jad.html
-// Decompiler options: packimports(3) fieldsfirst ansi space 
-// Source File Name:   VerifyCodeController.java
 
 package com.student_assessment.controller;
-
 import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Font;
@@ -52,7 +47,7 @@ public class VerifyCodeController {
 		Graphics g = image.getGraphics();
 		Graphics2D g2d = (Graphics2D) g;
 		Random random = new Random();
-		Font mfont = new Font("����", 1, 16);
+		Font mfont = new Font("宋体", 1, 16);
 		g.setColor(getRandColor(200, 250));
 		g.fillRect(0, 0, width, height);
 		g.setFont(mfont);

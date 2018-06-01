@@ -7,15 +7,19 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<id property="collegeId" column="collegeId"></id>
 		<result property="collegeName" column="collegeName"></result>
 	</resultMap>
+	
 	<select id="selectCollege" parameterType="College" resultMap="rs1">
 		select  * from colleges
 	</select>
+	
 	<select id="selectCollegeById" parameterType="string" resultType="College">
 		select * from colleges where collegeId=#{collegeId}
 	</select>
+	
 	<insert id="addCollege" parameterType="College">
 		insert into "colleges"  values( #{collegeId},#{collegeName})
 	</insert>
+	
 	<update id="updateCollege" parameterType="College">
 		update colleges set
 			<if test="collegeName!=null and collegeName!=''">
@@ -23,6 +27,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			</if> 
 		where collegeId=#{collegeId}
 	</update>
+	
 	<delete id="deleteCollege"  parameterType="java.lang.String">
 		delete from colleges where collegeId=#{collegeId}
 	</delete>

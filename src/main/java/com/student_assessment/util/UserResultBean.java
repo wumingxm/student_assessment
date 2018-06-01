@@ -11,7 +11,6 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 public class UserResultBean
 {
-	private String rNo;
 	private String rName;//角色姓名
 	private String userTypeId;//用户类型Id
 	private String userName;//用户名
@@ -76,15 +75,5 @@ public class UserResultBean
 
 	public void setrName(String rName) {
 		this.rName = rName;
-	}
-
-
-	public String getrNo() {
-		return rNo;
-	}
-
-
-	public void setrNo(String rNo) {
-		this.rNo = rNo;
 	}
 }

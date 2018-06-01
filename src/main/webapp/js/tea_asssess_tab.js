@@ -16,31 +16,31 @@ $(function() {
 	});
 	//定义编辑的格式
 	$.extend($.fn.datagrid.defaults.editors,
-					{
-						text : {
-							init : function(container, options) {
-								var input = $(
-										'<input type="text" class="datagrid-editable-input">')
-										.appendTo(container);
-								return input;
-							},
-							getValue : function(target) {
-								return $(target).val();
-							},
-							setValue : function(target, value) {
-								$(target).val(value);
-							},
-							resize : function(target, width) {
-								var input = $(target);
-								if ($.boxModel == true) {
-									input.width(width
-											- (input.outerWidth() - input.width()));
-								} else {
-									input.width(width);
-								}
-							}
-						}
-					});
+	{
+		text : {
+			init : function(container, options) {
+				var input = $(
+						'<input type="text" class="datagrid-editable-input">')
+						.appendTo(container);
+				return input;
+			},
+			getValue : function(target) {
+				return $(target).val();
+			},
+			setValue : function(target, value) {
+				$(target).val(value);
+			},
+			resize : function(target, width) {
+				var input = $(target);
+				if ($.boxModel == true) {
+					input.width(width
+							- (input.outerWidth() - input.width()));
+				} else {
+					input.width(width);
+				}
+			}
+		}
+	});
 	var editRow = undefined;
 	var typeList = [ {
 		"text" : 1,

@@ -45,18 +45,17 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	
 	<update id="updateCourse" parameterType="Course">
 		update course 
-			<trim prefix="SET" suffixOverrides=",">
+			<set>
 				<if test="courseScore!=null and courseScore!=''">
 					courseScore=#{courseScore},
 				</if> 
 				<if test="tNo!=null and tNo!=''">
 					tNo=#{tNo},
 				</if> 
-				<if test="courseTypeId!=nul and courseTypeId!=''">
+				<if test="courseTypeId!=null and courseTypeId!=''">
 					courseTypeId=#{courseTypeId}
 				</if>
-			</trim>
-			
+			</set>
 		where courseId=#{courseId}
 	</update>
 	

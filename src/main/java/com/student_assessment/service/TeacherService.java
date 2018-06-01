@@ -11,9 +11,9 @@ import java.util.List;
 public interface TeacherService
 {
 
-	public abstract Teacher selectTeacherByTNo(String s);
+	public abstract Teacher selectTeacherByTNo(String tNo);
 
-	public abstract void deleteStudent(String s);
+	public abstract void deleteTeacher(String tNo);
 
 	public abstract void updateTeacher(Teacher teacher);
 
@@ -21,7 +21,4 @@ public interface TeacherService
 
 	public abstract List selectTeacher(Teacher teacher);
 
-	public abstract void addTeacherList(List list);
-
-	public abstract void updateTeacherList(List list);
 }

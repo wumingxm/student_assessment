@@ -1,14 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"%>
 <!DOCTYPE html>
 <html>
-    <head>
-    	<meta charset="utf-8">
-    </head>
-    <body>
-    <jsp:include page="base.jsp"></jsp:include>
-       <script type="text/javascript" src="../js/echarts.js"></script>
-     <div id="chartmain" style="width:600px; height: 400px;"></div>
-     <script type="text/javascript">
+<head>
+<meta charset="utf-8">
+</head>
+<body>
+	<jsp:include page="base.jsp"></jsp:include>
+	<script type="text/javascript" src="../js/echarts.js"></script>
+	<div id="chartmain" style="width: 600px; height: 400px;"></div>
+	<script type="text/javascript">
    	option = {
     		    title : {
     		        text: '大学生学生评价结果分析\n',
@@ -126,27 +126,11 @@
     		        }
     		    ]
     		}; 
-    		/*   var option = {
-    	            title:{
-    	                text:'ECharts 数据统计'
-    	            },            
-    	            series:[{
-    	                name:'访问量',
-    	                type:'pie',    
-    	                radius:'60%', 
-    	                data:[
-    	                    {value:500,name:'Android'},
-    	                    {value:200,name:'IOS'},
-    	                    {value:360,name:'PC'},
-    	                    {value:100,name:'Ohter'}
-    	                ]
-    	            }]
-    	        }; */
      //初始化echarts实例
      var myChart = echarts.init(document.getElementById('chartmain'));
      //使用制定的配置项和数据显示图表
      myChart.setOption(option);                   
     </script>
-    </body>
+</body>
 </html>
 

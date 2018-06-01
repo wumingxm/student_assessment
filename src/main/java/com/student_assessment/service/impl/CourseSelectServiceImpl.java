@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 
 import com.student_assessment.dao.CourseSelectDao;
 import com.student_assessment.pojo.CourseSelect;
+import com.student_assessment.pojo.Student;
 import com.student_assessment.service.CourseSelectService;
 import com.student_assessment.util.CourseSelectBean;
 import com.student_assessment.util.CourseSelectResultBean;
@@ -58,12 +59,12 @@ class CourseSelectServiceImpl implements CourseSelectService {
 		return courseSelectDao.selectCourseSelectBySNo(sNo);
 	}
 	//查询学生成绩
-	public List<CourseSelectBean> selectCourseInfoAll() {
-		return courseSelectDao.selectCourseInfoAll();
+	public List<CourseSelectBean> selectCourseInfoAll(Student student) {
+		return courseSelectDao.selectCourseInfoAll(student);
 	}
-	//查询学生所选的课程名称
 	@Override
-	public List<CourseSelectResultBean> selectCourseSelectAll() {
-		return courseSelectDao.selectCourselectAll();
+	public List<CourseSelectResultBean> selectCourseSelectAll(Student student) {
+		// TODO Auto-generated method stub
+		return courseSelectDao.selectCourselectAll(student);
 	}
 }

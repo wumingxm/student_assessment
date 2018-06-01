@@ -21,9 +21,14 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
+import com.student_assessment.pojo.Student;
+import com.student_assessment.pojo.Teacher;
 import com.student_assessment.pojo.User;
+import com.student_assessment.service.StudentService;
+import com.student_assessment.service.TeacherService;
 import com.student_assessment.service.UserService;
 import com.student_assessment.util.PageBean;
+import com.student_assessment.util.StudentBean;
 import com.student_assessment.util.UserResultBean;
 
 @Controller
@@ -31,7 +36,13 @@ public class UserController {
 
 	@Autowired
 	private UserService userService;
-
+	
+	@Autowired
+	private StudentService studentService;
+	
+	@Autowired 
+	private TeacherService teacherService;
+	
 	@RequestMapping("/selectUserByUserName")
 	public String selectUserByUserName(String userName) {
 		User user = userService.selectUserByUserName(userName);
@@ -79,16 +90,28 @@ public class UserController {
 	@RequestMapping("/addUser")
 	@ResponseBody
 	public String addUser(User user) {
-		user.setUserAddDate(new Date());
-		user.setrNo(user.getUserName());
-		userService.addUser(user);	
-		return "添加用户信息成功!";
+		List list=null;
+		if(user.getUserTypeId()==1) {
+			Student s=new Student();
+			s.setsNo(user.getUserName());
+			list=studentService.selectStudent(s);
+		}
+		if(user.getUserTypeId()==1) {
+			Teacher t=new Teacher();
+			t.settNo(user.getUserName());
+			list=teacherService.selectTeacher(t);
+		}
+		if(list!=null&&list.size()>0) {
+			user.setUserAddDate(new Date());
+			userService.addUser(user);	
+			return "添加用户信息成功!";
+		}
+		return "你不是该学校的人员不能添加";
 	}
 
 	@RequestMapping("/deleteUser/{userName}")
 	@ResponseBody	
 	public boolean deleteUser(@PathVariable("userName")String userName) {
-		System.out.println(userName);
 		User u = userService.selectUserByUserName(userName);
 		if (userName == null) {
 			return false;
@@ -101,6 +124,7 @@ public class UserController {
 	@RequestMapping("/updateUser")
 	@ResponseBody
 	public String updateUser(User user) {
+		System.out.println(user);
 		userService.updateUser(user);
 		return "更新用户信息成功";
 	}

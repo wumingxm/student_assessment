@@ -17,7 +17,14 @@ public class AssessStandardServiceImpl implements AssessStandardService {
 		// TODO Auto-generated method stub
 		return assessStandardDao.selectAssessStandard(assessStandard);
 	}
-
+	@Override
+	public AssessStandard selectAssessStandardById(String assessItemId) {
+		return assessStandardDao.selectAssessStandardById(assessItemId);
+	}
+	@Override
+	public AssessStandard selectAssessStandardByName(String assessItemName) {
+		return assessStandardDao.selectAssessStandardByName(assessItemName);
+	}
 	@Override
 	public void deleteAssessStandard(String assessItemId) {
 		assessStandardDao.deleteAssessStandard(assessItemId);
@@ -32,6 +39,9 @@ public class AssessStandardServiceImpl implements AssessStandardService {
 	public void updateAssessStandard(AssessStandard assessStandard) {
 		// TODO Auto-generated method stub
 		assessStandardDao.updateAssessStandard(assessStandard);
+	}
+	public Integer selectStandardLocation(String assessItemName) {
+		return assessStandardDao.selectStandardLocation(assessItemName);
 	}
 
 }

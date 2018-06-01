@@ -8,7 +8,6 @@ package com.student_assessment.util;
 import java.util.List;
 
 public class PageBean<T> {
-
 	private List<T> rows;
 	private Long total;
 	private Integer page;

@@ -25,11 +25,9 @@ public class StudentServiceImpl implements StudentService
 	public void addStudent(Student student) {
 		studentDao.addStudent(student);
 	}
-
 	public List<StudentBean> selectStudent(Student student) {
 		return studentDao.selectStudent(student);
 	}
-
 	public void addStudentList(List uList) {
 		Student student;
 		for (Iterator iterator = uList.iterator(); iterator.hasNext(); studentDao.addStudent(student))

@@ -6,34 +6,33 @@
 package com.student_assessment.pojo;
 
 import java.io.Serializable;
-
-public class College implements Serializable
-{
-
+/**
+ * 
+ * @author Administrator
+ *
+ */
+public class College implements Serializable {
+	
 	private String collegeId;
 	private String collegeName;
 
-	public College()
-	{
+	public College() {
+	
 	}
 
-	public String getCollegeId()
-	{
+	public String getCollegeId() {
 		return collegeId;
 	}
 
-	public void setCollegeId(String collegeId)
-	{
+	public void setCollegeId(String collegeId) {
 		this.collegeId = collegeId;
 	}
 
-	public String getCollegeName()
-	{
+	public String getCollegeName() {
 		return collegeName;
 	}
 
-	public void setCollegeName(String collegeName)
-	{
+	public void setCollegeName(String collegeName) {
 		this.collegeName = collegeName;
 	}
 }

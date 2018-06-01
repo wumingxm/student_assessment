@@ -3,12 +3,18 @@
 	font-size:25px;
 	color:'white';
 }
+.navbar-default .navbar-nav>li>a {
+	color: #00008B;
+}
+
+.navbar {
+	backgroud-color: 'red';
+}
 body{
 	font-family:华文楷体;
 }
 #top {
-   background-color: rgb(193, 223, 179);*/
-    backgroudn-color:'blue'
+  	background-color: rgb(193, 223, 179);
     margin-right:0;
     padding-right:0;
 }
@@ -52,3 +58,5 @@ body{
 	right:80px;
 	top:60px;"
 }
+
+

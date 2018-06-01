@@ -10,21 +10,40 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<result property="gradeString" column="gradeString"></result>
 	</resultMap>
 	
-	<select id="selectCourseInfoAll" resultMap="rs2">
+	<select id="selectCourseInfoAll" resultMap="rs2" parameterType="student">
 		select
-		stu.sno,stu.sname, wm_concat(grade)as gradeString
+		stu.sno,stu.sname, listagg(grade,',') within 
+        group(order by to_number(courseId) asc)as gradeString
 		from course_select cs
 		join stu on stu.sno= cs.sno
+		where 1=1
+		<if test="sNo!=null and sNo!=''">
+			and stu.sno=#{sNo}
+		</if>
+		<if test="sName!=null and sName!=''">
+			and stu.sname=#{sName}
+		</if>
+		<if test="classId!=null and classId!=''">
+			and classId=#{classId}
+		</if>
 		group by stu.sno,stu.sname
 	</select>
 	
-	<select id="selectCourselectAll"  resultType="CourseSelectResultBean">
+	<select id="selectCourselectAll"  resultType="CourseSelectResultBean" parameterType="Student">
 		select 
-			distinct c.courseId,c.courseName 
+			distinct c.courseId,c.courseName
    		from course_select cs
     	join course c on cs.courseId=c.courseId
-    	join stu   on cs.sno=cs.sno 
-    	order by courseId
+    	join stu   on stu.sno=cs.sno 
+    	<where>
+    		<if test="classId!=null and classId!=''">
+    			stu.classId=#{classId}
+    		</if>
+    		<if test="sNo!=null and sNo!=''">
+    			stu.sNo=#{sNo}
+    		</if>
+    	</where>
+    	order by to_number(courseId) asc
 	</select>
 	
 	<select id="selectCoursSelectBySNo" parameterType="string"

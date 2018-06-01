@@ -6,11 +6,16 @@
 package com.student_assessment.pojo;
 
 import java.io.Serializable;
-
+/**
+ * 
+ * @author Administrator
+ *
+ */
 public class CourseSelect implements Serializable
 {
 
 	private String sNo;
+	private String courseName;
 	private String courseId;
 	private Integer grade;
 	public String getsNo()

@@ -7,28 +7,47 @@ package com.student_assessment.pojo;
 
 import java.io.Serializable;
 import java.util.Date;
-
+/**
+ * 
+ * @author Administrator
+ *
+ */
 public class Teacher implements Serializable
 {
-	private String collegeId;
-	private String tName;
-	private String tSex;
-	private String tMinority;
-	private String tStatus;
-	private String id;
-	private Date tInDate;
-	private String tPosition;
-	private Date tBirthday;
-	private String tLivePlace;
-	private String tTelephone;
-	private String tNo;
-	private Integer tAge;
-	private String deptId;
+	private String id;//身份证号
+	
+	private String tNo;//教工号
+	
+	private String tName;//姓名
+	
+	private String tSex;//性别
+	
+	private Integer tAge;//年龄
+	
+	private Date tBirthday;//出生年月
+	
+	private String tMinority;//民族
+	
+	private String tStatus;//政治面貌
+	
+	private Date tInDate;//入职日期
+	
+	private String tPosition;//职称
+	
+	private String tLivePlace;//居住地
+	
+	private String tTelephone;//联系电话
+	
+	private String collegeId;//学院
+	
+	private String deptId;//部门
+	
 
 	public Teacher()
 	{
+		
 	}
-
+	
 	public String getCollegeId()
 	{
 		return collegeId;

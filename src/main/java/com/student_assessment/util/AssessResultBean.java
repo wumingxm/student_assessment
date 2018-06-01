@@ -21,101 +21,83 @@ public class AssessResultBean implements Serializable {
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private Date assessDate;// 评价日期
 
-	private String term;// 学期
-
-	private Integer moralTrait;// 道德素养
-
-	private Integer civicLiteracy;// 公民素养
-
-	private Integer liaision;// 交流与合作
-
-	private Integer exerciseHealth;// 运动与健康
-
-	private Integer appearance;//审美表现
-   	
-	private Integer totalScore;//总分
+	private String term; //评价学年
+	
+	private String assessScoreString;//查询出来的评价得分
+	
+	private Integer sum;//计算总分
+	
 	public String getsName() {
 		return sName;
 	}
+
 	public void setsName(String sName) {
 		this.sName = sName;
 	}
+
 	public String getAssessTabId() {
 		return assessTabId;
 	}
+
 	public void setAssessTabId(String assessTabId) {
 		this.assessTabId = assessTabId;
 	}
+
 	public String getsNo() {
 		return sNo;
 	}
+
 	public void setsNo(String sNo) {
 		this.sNo = sNo;
 	}
+
 	public String getState() {
 		return state;
 	}
-	public void setState(String state) {
-		this.state = state;
-	}
-	public String getAcademicYear() {
-		return academicYear;
-	}
-	public void setAcademicYear(String academicYear) {
-		this.academicYear = academicYear;
-	}
-	public String getAssessManId() {
-		return assessManId;
-	}
-	public void setAssessManId(String assessManId) {
-		this.assessManId = assessManId;
-	}
-	public Date getAssessDate() {
-		return assessDate;
-	}
-	public void setAssessDate(Date assessDate) {
-		this.assessDate = assessDate;
-	}
+	
+
 	public String getTerm() {
 		return term;
 	}
+
 	public void setTerm(String term) {
 		this.term = term;
 	}
-	public Integer getMoralTrait() {
-		return moralTrait;
+
+	public void setState(String state) {
+		this.state = state;
 	}
-	public void setMoralTrait(Integer moralTrait) {
-		this.moralTrait = moralTrait;
+
+	public String getAcademicYear() {
+		return academicYear;
 	}
-	public Integer getCivicLiteracy() {
-		return civicLiteracy;
+
+	public void setAcademicYear(String academicYear) {
+		this.academicYear = academicYear;
 	}
-	public void setCivicLiteracy(Integer civicLiteracy) {
-		this.civicLiteracy = civicLiteracy;
+
+	public String getAssessManId() {
+		return assessManId;
 	}
-	public Integer getLiaision() {
-		return liaision;
+
+	public void setAssessManId(String assessManId) {
+		this.assessManId = assessManId;
 	}
-	public void setLiaision(Integer liaision) {
-		this.liaision = liaision;
+
+	public Date getAssessDate() {
+		return assessDate;
 	}
-	public Integer getExerciseHealth() {
-		return exerciseHealth;
+
+	public void setAssessDate(Date assessDate) {
+		this.assessDate = assessDate;
 	}
-	public void setExerciseHealth(Integer exerciseHealth) {
-		this.exerciseHealth = exerciseHealth;
+
+	public String getAssessScoreString() {
+		return assessScoreString;
 	}
-	public Integer getAppearance() {
-		return appearance;
+
+	public void setAssessScoreString(String assessScoreString) {
+		this.assessScoreString = assessScoreString;
 	}
-	public void setAppearance(Integer appearance) {
-		this.appearance = appearance;
-	}
-	public Integer getTotalScore() {
-		return totalScore;
-	}
-	public void setTotalScore(Integer totalScore) {
-		this.totalScore = totalScore;
-	}
+	
 }

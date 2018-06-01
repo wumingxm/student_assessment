@@ -13,12 +13,6 @@ import javax.servlet.http.HttpServletResponse;
 public class EncodingFilter
 	implements Filter
 {
-
-
-	public void destroy()
-	{
-	}
-
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
 		throws IOException, ServletException
 	{
@@ -30,5 +24,10 @@ public class EncodingFilter
 	public void init(FilterConfig filterconfig)
 		throws ServletException
 	{
+	}
+
+	@Override
+	public void destroy() {
+		
 	}
 }

@@ -1,10 +1,5 @@
-// Decompiled by Jad v1.5.8e2. Copyright 2001 Pavel Kouznetsov.
-// Jad home page: http://kpdus.tripod.com/jad.html
-// Decompiler options: packimports(3) fieldsfirst ansi space 
-// Source File Name:   TeacherController.java
 
 package com.student_assessment.controller;
-
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -13,6 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -49,5 +45,30 @@ public class TeacherController
 	{
 		List list = teacherService.selectTeacher(tea);
 		return list;
+	}
+	
+	@RequestMapping("/addTeacher")
+	@ResponseBody
+	public String addTeacher(Teacher teacher) {
+		List<Teacher>tList=teacherService.selectTeacher(teacher);
+		if(tList!=null&&tList.size()>0) {
+			return "教师信息已经存在不能重复添加!";
+		}else {
+			teacherService.addTeacher(teacher);
+			return "添加教师细信息成功!";
+		}
+	}
+
+	@RequestMapping("/deleteTeacher/{tNo}")
+	@ResponseBody
+	public boolean deleteTeacher(@PathVariable("tNo")String tNo) {
+		teacherService.deleteTeacher(tNo);
+		return true;
+	}
+	@RequestMapping("/updateTeacher")
+	@ResponseBody
+	public String updateTeacher(Teacher teacher) {
+		teacherService.updateTeacher(teacher);
+		return "更新教师信息成功";
 	}
 }

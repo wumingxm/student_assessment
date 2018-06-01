@@ -11,15 +11,14 @@ import java.util.List;
 public interface TeacherDao
 {
 
-	public abstract Teacher selectTeacherByTNo(String s);
+	Teacher selectTeacherByTNo(String s);
 
-	public abstract void deleteStudent(String s);
+	void deleteTeacher(String tNo);
 
-	public abstract void updateTeacher(Teacher teacher);
+	void updateTeacher(Teacher teacher);
 
-	public abstract void addTeacher(Teacher teacher);
+	void addTeacher(Teacher teacher);
 
-	public abstract List selectTeacher(Teacher teacher);
+	List selectTeacher(Teacher teacher);
 
-	public abstract void addTeacherList(List list);
 }

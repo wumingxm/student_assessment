@@ -12,6 +12,7 @@ public class CourseSelectResultBean implements Serializable{
 	private String sName;
 	private String courseId;
 	private String courseName;
+	private Integer grade;
 	public String getsNo() {
 		return sNo;
 	}
@@ -35,5 +36,11 @@ public class CourseSelectResultBean implements Serializable{
 	}
 	public void setCourseName(String courseName) {
 		this.courseName = courseName;
+	}
+	public Integer getGrade() {
+		return grade;
+	}
+	public void setGrade(Integer grade) {
+		this.grade = grade;
 	}
 }

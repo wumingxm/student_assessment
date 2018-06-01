@@ -5,15 +5,18 @@ import java.util.Date;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 public class StudentBean
 {
-
-	private String id;
+	
+	private Integer id;
 	private String sNo;
 	private String sName;
 	private String sSex;
 	private Integer sAge;
 	@DateTimeFormat(pattern="yyyy-MM-dd")
+	@JsonFormat(pattern="yyyy-MM-dd")
 	private Date sBirthday;
 	private String sState;
 	private String sStatus;
@@ -21,13 +24,12 @@ public class StudentBean
 	private String classId;
 	private String className;
 	private String collegeName;
-	public String getId()
-	{
+	
+	public Integer getId() {
 		return id;
 	}
 
-	public void setId(String id)
-	{
+	public void setId(Integer id) {
 		this.id = id;
 	}
 

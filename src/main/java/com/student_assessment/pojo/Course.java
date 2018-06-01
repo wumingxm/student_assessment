@@ -6,46 +6,43 @@
 package com.student_assessment.pojo;
 
 import java.io.Serializable;
+/**
+ * 
+ * @author Administrator
+ *
+ */
+public class Course implements Serializable {
+	private String courseId;// 课程ID
 
-public class Course implements Serializable
-{
-	private String courseId;//课程ID
-	
-	private String courseName;//课程名称
-	
-	private Integer courseScore;//学分
-	
-	private String tNo;//教工号
-	
-	private String courseTypeId;//课程类型
-	
-	public String getCourseId()
-	{
+	private String courseName;// 课程名称
+
+	private Integer courseScore;// 学分
+
+	private String tNo;// 教工号
+
+	private String courseTypeId;// 课程类型
+
+	public String getCourseId() {
 		return courseId;
 	}
 
-	public void setCourseId(String courseId)
-	{
+	public void setCourseId(String courseId) {
 		this.courseId = courseId;
 	}
 
-	public String getCourseName()
-	{
+	public String getCourseName() {
 		return courseName;
 	}
 
-	public void setCourseName(String courseName)
-	{
+	public void setCourseName(String courseName) {
 		this.courseName = courseName;
 	}
 
-	public String gettNo()
-	{
+	public String gettNo() {
 		return tNo;
 	}
 
-	public void settNo(String tNo)
-	{
+	public void settNo(String tNo) {
 		this.tNo = tNo;
 	}
 
@@ -64,5 +61,5 @@ public class Course implements Serializable
 	public void setCourseTypeId(String courseTypeId) {
 		this.courseTypeId = courseTypeId;
 	}
-	
+
 }

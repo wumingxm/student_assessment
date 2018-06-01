@@ -19,6 +19,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<result property="tInDate" column="tInDate"></result>
 		<result property="deptId" column="deptId"></result>
 	</resultMap>
+	
 	<select id="selectTeacher" resultMap="rs1" parameterType="Teacher">
 		select * from teacher
 		<where>
@@ -63,52 +64,61 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			</if>
 		</where>
 	</select>
+	
 	<select id="selectTeacherByTNo" parameterType="string" resultType="Teacher">
 		select * from teacher where  tNo=#{tNo}
 	</select>
-	<insert id="addTeacher" parameterType="Teacher">
-		insert into "teacher"  values( #{collegeId}, #{tName},#{tSex},#{tMinority},#{tStatus},#{id},#{tInDate},#{tPoisition},#{tInDate},#{tLivePlace},#{tTelephone},#{tNo},#{deptId},#{tAge})
+	<insert id="addTeacher">
+		insert into teacher(tNo,id,tName,tTelephone)values(#{tNo},#{tName},#{tTelephone},#{tTelephone})
 	</insert>
+	
+	<!-- <insert id="addTeacher" parameterType="Teacher">
+		insert into teacher  values( #{collegeId}, #{tName},#{tSex},#{tMinority},#{tStatus},#{id},#{tInDate},#{tPoisition},#{tInDate},#{tLivePlace},#{tTelephone},#{tNo},#{deptId},#{tAge})
+	</insert> -->
+	
 	<update id="updateTeacher" parameterType="Teacher">
-		update teacher set
-			<if test="tName!=null and tName!=''">
-				tName=#{tName}
-			</if> 
-			<if test="tSex !=null and tSex !=''">
-				tSex =#{tSex}
-			</if> 
-			<if test="tAge!=null and tAge !=''">
-				tAge =#{tAge}
-			</if> 
-			<if test="tBirthday !=null and tBirthday !=''">
-				tBirthday =#{tBirthday}
-			</if> 
-			<if test="tStatus !=null and tStatus!=''">
-				sStatus =#{sStatus}
-			</if> 
-			<if test="colleageId !=null and colleageId!=''">
-				colleageId =#{colleageId}
-			</if> 
-			<if test="tPostion!=null and tPosition!=''" >
-				tPosition=#{tPosition}
-			</if>
-			<if test="tLivePlace !=null and tLivePlace!=''">
-				tLivePlace=#{tLivePlace}
-			</if>
-			<if test="tTelephone!=null and tTelephone!=''">
-				tTelephone=#{tTelephone}
-			</if>
-			<if test="tMinority!=null and tMinority!=''" >
-				tMinority=#{tMinority}
-			</if>
-			<if test="tInDate!=null and tInDate!=''">
-				tInDate=#{#tInDate}			
-			</if>
-			<if test="deptId!=null and deptId!=''">
-				deptId=#{deptId}
-			</if>
+		update teacher 
+			<set>
+				<if test="tName!=null and tName!=''">
+					tName=#{tName},
+				</if> 
+				<if test="tSex !=null and tSex !=''">
+					tSex =#{tSex},
+				</if> 
+				<if test="tAge!=null and tAge !=''">
+					tAge =#{tAge},
+				</if> 
+				<if test="tBirthday !=null and tBirthday !=''">
+					tBirthday =#{tBirthday},
+				</if> 
+				<if test="tStatus !=null and tStatus!=''">
+					tStatus =#{tStatus},
+				</if> 
+				<if test="collegeId !=null and collegeId!=''">
+					collegeId =#{collegeId},
+				</if> 
+				<if test="tPosition!=null and tPosition!=''" >
+					tPosition=#{tPosition},
+				</if>
+				<if test="tLivePlace !=null and tLivePlace!=''">
+					tLivePlace=#{tLivePlace},
+				</if>
+				<if test="tTelephone!=null and tTelephone!=''">
+					tTelephone=#{tTelephone},
+				</if>
+				<if test="tMinority!=null and tMinority!=''" >
+					tMinority=#{tMinority},
+				</if>
+				<if test="tInDate!=null and tInDate!=''">
+					tInDate=#{#tInDate},			
+				</if>
+				<if test="deptId!=null and deptId!=''">
+					deptId=#{deptId},
+				</if>
+			</set>
 		where tNo=#{tNo}
 	</update>
+	
 	<delete id="deleteTeacher"  parameterType="java.lang.String">
 		delete from teacher where tNo=#{value}
 	</delete>

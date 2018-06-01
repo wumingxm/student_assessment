@@ -20,37 +20,27 @@ public class TeacherServiceImpl implements TeacherService {
 	@Autowired
 	private TeacherDao teacherDao;
 
+	//根据教工号查询教师信息
 	public Teacher selectTeacherByTNo(String tNo) {
 		return teacherDao.selectTeacherByTNo(tNo);
 	}
-
-	public void deleteStudent(String tNo) {
-		teacherDao.deleteStudent(tNo);
+	
+	//删除教师信息
+	public void deleteTeacher(String tNo) {
+		teacherDao.deleteTeacher(tNo);
 	}
 
 	public void updateTeacher(Teacher teacher) {
 		teacherDao.updateTeacher(teacher);
 	}
-
+	
+	//添加教师信息
 	public void addTeacher(Teacher teacher) {
 		teacherDao.addTeacher(teacher);
 	}
-
+	
+	//查询教师信息
 	public List selectTeacher(Teacher teacher) {
 		return teacherDao.selectTeacher(teacher);
-	}
-
-	public void addTeacherList(List tList) {
-		Teacher teacher;
-		for (Iterator iterator = tList.iterator(); iterator.hasNext(); teacherDao.addTeacher(teacher))
-			teacher = (Teacher) iterator.next();
-
-	}
-
-	public void updateTeacherList(List tList) {
-		Teacher teacher;
-		for (Iterator iterator = tList.iterator(); iterator.hasNext(); teacherDao.updateTeacher(teacher))
-			teacher = (Teacher) iterator.next();
-
 	}
 }

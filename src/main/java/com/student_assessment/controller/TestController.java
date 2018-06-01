@@ -10,10 +10,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.student_assessment.pojo.AssessScoreTab;
 import com.student_assessment.pojo.AssessStandard;
+import com.student_assessment.pojo.CourseSelect;
 import com.student_assessment.pojo.Student;
 import com.student_assessment.pojo.StudentAssessTab;
 import com.student_assessment.service.AssessScoreTabService;
 import com.student_assessment.service.AssessStandardService;
+import com.student_assessment.service.CourseSelectService;
 import com.student_assessment.service.StudentAssessTabService;
 import com.student_assessment.service.StudentService;
 import com.student_assessment.util.StudentBean;
@@ -26,6 +28,10 @@ public class TestController {
 	private StudentAssessTabService studentAssessTabService;
 	@Autowired
 	private AssessStandardService assessStandardService;
+	
+	@Autowired
+	private CourseSelectService courseSelectService;
+	
 	@Autowired
 	private AssessScoreTabService assessScoreTabService;
 	public Integer generateScore() {
@@ -58,6 +64,7 @@ public class TestController {
 				}
 				//给学生评价表中插入数据
 				studentAssessTabService.addStudentAssessTab(studentAssessTab);
+				studentAssessTabService.updateStudentAssessTabState(studentAssessTab);
 		}
 	}
 	@RequestMapping("/insertStudentAssess")
@@ -90,5 +97,28 @@ public class TestController {
 	@RequestMapping("/test")
 	public String goTest() {
 		return "test";
+	}
+	public Integer generateScore2() {
+		return (int)(Math.round(Math.random()*100));
+	}
+	//测试学生选课
+	@RequestMapping("/inserGrade")
+	public String  insertGrade() {
+		for(int i=1;i<=5;i++) {
+			Student student=new Student();
+			student.setClassId(i+"");
+			List<StudentBean>list=studentService.selectStudent(student);
+			for(StudentBean studentBean:list) {
+				CourseSelect courseSelect=new CourseSelect();
+				for(int j=i;j<i+8;j++) {
+					courseSelect.setCourseId(j+"");
+					courseSelect.setGrade(generateScore2());
+					courseSelect.setsNo(studentBean.getsNo());
+					courseSelectService.addCourseSelect(courseSelect);
+				}
+			}
+		
+		}
+		return "index";
 	}
 }

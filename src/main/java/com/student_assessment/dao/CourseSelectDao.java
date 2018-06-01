@@ -8,6 +8,7 @@ package com.student_assessment.dao;
 import java.util.List;
 
 import com.student_assessment.pojo.CourseSelect;
+import com.student_assessment.pojo.Student;
 import com.student_assessment.util.CourseSelectBean;
 import com.student_assessment.util.CourseSelectResultBean;
 
@@ -28,7 +29,7 @@ public interface CourseSelectDao
 
 	 void updateCourseSelectList(List list);
 
-	 List<CourseSelectBean> selectCourseInfoAll();
+	 List<CourseSelectBean> selectCourseInfoAll(Student student);
 	 
-	 List<CourseSelectResultBean>selectCourselectAll();
+	 List<CourseSelectResultBean>selectCourselectAll(Student student);
 }

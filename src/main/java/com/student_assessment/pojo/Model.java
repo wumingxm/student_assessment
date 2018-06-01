@@ -7,7 +7,11 @@ package com.student_assessment.pojo;
 
 import java.io.Serializable;
 import java.util.List;
-
+/**
+ * 
+ * @author Administrator
+ *
+ */
 public class Model implements Serializable
 {
 

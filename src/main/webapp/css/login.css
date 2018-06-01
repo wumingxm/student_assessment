@@ -27,16 +27,16 @@
     }
 
     #userName_div,#password_div,#validate_div {
-        margin-left:20px;
+        margin-left:30px;
     }
     #userName_div{
-        margin-top:40px;
+        margin-top:10px;
     }
     #password_div,#validate_div{
         margin-top:30px;
     }
     #userTypeName_div{
-      	margin-top:30px;
+      	margin-top:20px;
     }
     #main {
         width: 100%;
@@ -64,15 +64,11 @@
     }
 
     #submit_div {
-        margin-top: 49px;;
-        margin-left: 18px;
+        margin-left: 38px;
     }
 
-    #submit {
-        width: 351px;
-        height: 42px;
-        border-radius: 2px;
-        font-color: rgb(145, 208, 213);
+    #btn{
+       
     }
 
     #img {
@@ -128,8 +124,11 @@
 
     hr {
         position: relative;
-        top: 20px;
+        top: 10px;
     }
     #img{
     	margin:0,0,0,0;
+    }
+    small{
+    	margin-left:20px;
     }

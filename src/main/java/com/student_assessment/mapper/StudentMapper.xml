@@ -14,6 +14,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<result property="classId" column="classId"></result>
 		<result property="sAge" column="sAge"></result>
 	</resultMap>
+	
 	<resultMap type="StudentBean" id="rs2">
 		<id property="sNo" column="sNo"></id>
 		<result property="sName" column="sName"></result>
@@ -27,9 +28,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<result property="className" column="className"></result>
 		<result property="collegeName" column="collegeName"></result>
 	</resultMap>
+	
 	<select id="selectStudentBySNo" parameterType="string" resultType="Student">
 		select * from stu where  sNo=#{sNo}
 	</select>
+	
 	<select id="selectStudent" parameterType="Student" resultMap="rs2">
 	select * from 
 		(select rownum rn ,s.*,c.collegeName,c2.className from stu s,colleges c,classes c2 
@@ -63,9 +66,11 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			</if>
          )
 	</select>
+	
 	<insert id="addStudent" parameterType="Student">
 		insert into stu  values( #{sNo},#{sName}, #{sSex},#{id},#{sState}, #{sStatus}, #{collegeId},#{classId},#{sAge})
 	</insert>
+	
 	<update id="updateUser" parameterType="Student">
 		update stu set
 			<if test="sNo!=null and sNo!=''">
@@ -97,6 +102,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			</if>
 		where sNo=#{sNo}
 	</update>
+	
 	<delete id="deleteStudent"  parameterType="java.lang.String">
 		delete from stu where sNo=#{value}
 	</delete>

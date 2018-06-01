@@ -6,77 +6,61 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="selectUserByUserName" parameterType="string" resultType="User">
 		select * from user_tab where userName=#{value}
 	</select>
-	<select id="selectUserDetialInformation" parameterType="UserResultBean" resultType="UserResultBean">
-	select 
-		t.rNo,
-		t.rName,
-		t.userName,
-		t.passWord,
-		t.userTypeName 
-		from((select 
-	      ut.rNo,
-	      stu.sName as rName,
-	      ut.userName,
-	      ut.passWord,
-	      utt.userTypeName
-	    from user_tab ut 
-	    join user_type_tab utt  on ut.userTypeId=utt.userTypeId
-	    join stu on ut.rno=stu.sNo
-	    <where>
-	    	1=1
-	    	<if test="rNo!=null and rNo!=''">
-	    		and sno=#{rNo}
-	    	</if>
-	    	<if test="rName!=null and rName!=''">
-	    		and sName  <![CDATA[like '%${rName}%']]>
-	    	</if>
-	    	<if test="userName!=null and userName!=''">
-    			and userName=#{userName}
-    		</if>
-	    </where>)
-	    
-	    union
-	    
-	    (select 
-	      ut.rNo,
-	      tea.tName as rName,
-	      ut.userName,
-	      ut.passWord,
-	      utt.userTypeName
-	    from user_tab ut 
-	    join user_type_tab utt  on ut.userTypeId=utt.userTypeId
-	    join teacher tea on ut.rno=tea.tNo
-	  	<where>
+	
+	<select id="selectUserDetialInformation" parameterType="UserResultBean" resultType="UserResultBean">	
+	select t.userName,t.rName, t.passWord, t.userTypeName from(
+		select 
+		       ut.userName, 
+		       stu.sName as rName, 
+		       ut.passWord, 
+		       utt.userTypeName 
+		       from user_tab ut 
+		       join user_type_tab utt on ut.userTypeId=utt.userTypeId 
+		       join stu on ut.userName=stu.sNo 
+		<where>
+    	1=1
+	    <if test="rName!=null and rName!=''">
+	    	   and sName <![CDATA[like '%${rName}%']]>
+	    </if>
+	    <if test="userName!=null and userName!=''">
+	    	   and userName=#{userName}
+	    </if> 
+   		</where>
+		union 
+		select ut.userName,
+		      tea.tName as rName, 
+		      ut.passWord, utt.userTypeName 
+		from user_tab ut join user_type_tab utt on ut.userTypeId=utt.userTypeId 
+		join teacher tea on ut.userName=tea.tNo
+		<where>
     	 1=1
-	   		<if test="rNo!=null and rNo!=''">
-	    		and tno=#{rNo}
-	    	</if>
-	    	<if test="rName!=null and rName!=''">
-	    		and tName <![CDATA[like '%${rName}%']]>
-	    	</if>
-	    	<if test="userName!=null and userName!=''">
-	    		and userName=#{userName}
-	    	</if> 
-   		 </where>))t
-
+	    <if test="rName!=null and rName!=''">
+	    	and tName <![CDATA[like '%${rName}%']]>
+	    </if>
+	    <if test="userName!=null and userName!=''">
+	    	and userName=#{userName}
+	    </if> 
+   		</where>)t
 	</select>
 	<insert id="addUser" parameterType="User">
-		insert into user_tab  values(#{userTypeId},#{userName},#{passWord},#{userAddDate},#{rNo})
+		insert into user_tab  values(#{userTypeId},#{userName},#{passWord},#{userAddDate})
 	</insert>
 	
 	<update id="updateUser" parameterType="User">
 		update user_tab 
-		set
-		<if test="passWord!=null and passWord!=''">
-			user_tab.passWord=#{passWord},
-		</if>
-		<if test="userTypeId!=null and userTypeId!=''">
-			user_tab.userTypeId=#{userTypeId}
-		</if>
+		<set>
+			<if test="passWord!=null and passWord!=''">
+				user_tab.passWord=#{passWord}
+			</if>
+			<if test="userTypeId!=null and userTypeId!=''">
+				user_tab.userTypeId=#{userTypeId}
+			</if>
+		</set>
 		<where>
 			user_tab.userName=#{userName}
 		</where>
 	</update>
+	
 	<delete id="deleteUserByUserName"  parameterType="java.lang.String">
 		delete from user_tab where userName=#{value}
 	</delete>

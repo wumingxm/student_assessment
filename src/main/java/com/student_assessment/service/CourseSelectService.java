@@ -8,6 +8,7 @@ package com.student_assessment.service;
 import java.util.List;
 
 import com.student_assessment.pojo.CourseSelect;
+import com.student_assessment.pojo.Student;
 import com.student_assessment.util.CourseSelectBean;
 import com.student_assessment.util.CourseSelectResultBean;
 
@@ -27,7 +28,7 @@ import com.student_assessment.util.CourseSelectResultBean;
 
 	 void updateCourseSelectList(List list);
 	 
-	 List<CourseSelectBean> selectCourseInfoAll();
+	 List<CourseSelectBean> selectCourseInfoAll(Student student);
 	 
-	 List<CourseSelectResultBean>selectCourseSelectAll();
+	 List<CourseSelectResultBean>selectCourseSelectAll(Student student);
 }

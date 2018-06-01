@@ -6,6 +6,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="selectModel2" resultType="Model">
 		select * from model 
 	</select>
+	
 	<select id="selectModelById" resultType="Model" parameterType="integer">
 		select * from model  where pid=#{value}
 	</select>

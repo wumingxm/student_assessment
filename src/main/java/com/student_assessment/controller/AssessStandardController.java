@@ -53,17 +53,32 @@ public class AssessStandardController {
 	}
 	
 	@RequestMapping("/deleteAssessStandard")
-	public void  deleteAssessStandard(String assssItemId) {
-		assessStandardService.deleteAssessStandard(assssItemId);
+	@ResponseBody
+	public boolean   deleteAssessStandard(String assessItemId) {
+		assessStandardService.deleteAssessStandard(assessItemId);
+		return true;
 	}
 	
 	@RequestMapping("/addAssessStandard")
-	public void  addAssessStandard(AssessStandard assessStandard) {
-		assessStandardService.addAssessStandard(assessStandard);
+	@ResponseBody
+	public String  addAssessStandard(AssessStandard assessStandard) {
+		//查询指标权重
+		AssessStandard assessStandard2=assessStandardService.selectAssessStandardById(assessStandard.getAssessItemId());
+		AssessStandard assessStandard3=assessStandardService.selectAssessStandardByName(assessStandard.getAssessItemName());
+		if(null!=assessStandard2) {
+			return "测评指标ID已经 存在";
+		}else if(null!=assessStandard3) {
+			return "测评指标名称已经存在!";
+		}else {
+			assessStandardService.addAssessStandard(assessStandard);
+		}
+		return "添加学生标准成功!";
 	}
 	
 	@RequestMapping("/updateAssessStandard")
-	public void updateAssessStandard(AssessStandard assessStandard) {
+	@ResponseBody
+	public String updateAssessStandard(AssessStandard assessStandard) {
 		assessStandardService.updateAssessStandard(assessStandard);
+		return "变更评价标准信息成功！";
 	}
 }
